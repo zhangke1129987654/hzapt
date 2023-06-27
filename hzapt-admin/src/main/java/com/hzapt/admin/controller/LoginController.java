@@ -33,7 +33,7 @@ public class LoginController {
      * @return
      */
     @GetMapping("/login")
-    public ModelAndView hello(){
+    public ModelAndView login(){
         ModelAndView mav = new ModelAndView();
         // View 视图
         // SB会自动在 resources/templates 中去查找 login.ftl
@@ -50,6 +50,17 @@ public class LoginController {
     public ResultVo<String> saveForm(@RequestBody UserVo userVo) {
         userLogic.setUser(userVo);
         return ResultVo.success("成功");
+    }
+    /**
+     * Get请求才能访问
+     * 对应 localhost/login
+     * @return
+     */
+    @GetMapping("/introduce")
+    public ModelAndView introduce(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("ct");
+        return mav;
     }
 }
 
