@@ -45,7 +45,7 @@
             alert("登记成功");
             // xhr.addEventListener('load', function () {
             //     console.log(this.response)
-            // })测试
+            // })
         }
     </script>
     <style lang="scss" scoped>
