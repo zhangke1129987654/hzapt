@@ -2,6 +2,38 @@
 <head>
     <title>杭州奥佩特健康管理有限公司</title>
     <script type="text/javascript">
+            //当页面加载完成后触发该函数
+            window.onload = function () {
+            //e.preventDefault() --- 阻止默认事件
+            //当一个手指放在屏幕上时，会触发touchstart事件。如果另一个手指又放在了屏幕上，则会先触发gesturestart事件，随后触发基于该手指的touchstart事件。
+            document.addEventListener('gesturestart', function (e) {
+                e.preventDefault();
+            });
+
+            //在单个元素上单击两次 --- dblclick
+            document.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+        });
+
+            //一个手指放在屏幕上时，会触发touchstart事件
+            document.addEventListener('touchstart', function (event) {
+            if (event.touches.length > 1) {
+            event.preventDefault();
+        }
+        });
+
+            //如果一个或两个手指在屏幕上滑动，将会触发gesturechange事件
+            //但只要有一个手指移开，则会触发gestureend事件，紧接着又会触发toucheend事件。
+            var lastTouchEnd = 0;
+            document.addEventListener('touchend', function (event) {
+            var now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+            lastTouchEnd = now;
+        }, false);
+        };
+
         function checkForm() {
             var name = document.getElementById("model.name").value;
             var t = document.getElementById("model.gender");
@@ -106,6 +138,7 @@
             position: relative;
             display: flex;
             align-items: center;
+            outline-style: none;
         }
        input {
           border-width: 0;
@@ -115,6 +148,7 @@
           height: 54px;
           font-size: 30px;
           line-height: 54px;
+          outline-style: none;
           }
         .ph {
            color: #919191;
@@ -137,9 +171,10 @@
             line-height: 80px;
         }
         .option {
-            padding-left: 30px;
+            padding-left: 40px;
             font-size: 10px;
             color:#919191;
+            margin-left: 20px;
         }
         .select {
             width:100%;
