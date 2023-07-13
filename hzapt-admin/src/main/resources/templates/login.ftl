@@ -2,38 +2,6 @@
 <head>
     <title>杭州奥佩特健康管理有限公司</title>
     <script type="text/javascript">
-            //当页面加载完成后触发该函数
-            window.onload = function () {
-            //e.preventDefault() --- 阻止默认事件
-            //当一个手指放在屏幕上时，会触发touchstart事件。如果另一个手指又放在了屏幕上，则会先触发gesturestart事件，随后触发基于该手指的touchstart事件。
-            document.addEventListener('gesturestart', function (e) {
-                e.preventDefault();
-            });
-
-            //在单个元素上单击两次 --- dblclick
-            document.addEventListener('dblclick', function (e) {
-            e.preventDefault();
-        });
-
-            //一个手指放在屏幕上时，会触发touchstart事件
-            document.addEventListener('touchstart', function (event) {
-            if (event.touches.length > 1) {
-            event.preventDefault();
-        }
-        });
-
-            //如果一个或两个手指在屏幕上滑动，将会触发gesturechange事件
-            //但只要有一个手指移开，则会触发gestureend事件，紧接着又会触发toucheend事件。
-            var lastTouchEnd = 0;
-            document.addEventListener('touchend', function (event) {
-            var now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
-        }
-            lastTouchEnd = now;
-        }, false);
-        };
-
         function checkForm() {
             var name = document.getElementById("model.name").value;
             var t = document.getElementById("model.gender");
@@ -69,8 +37,8 @@
                 city:city
             }
             let xhr = new XMLHttpRequest()
-            //xhr.open('POST', 'http://localhost:8850/saveForm', true)
-            xhr.open('POST', 'http://118.178.229.8:8850/saveForm', true)
+            //xhr.open('POST', 'http://localhost:80/saveForm', true)
+            xhr.open('POST', 'http://118.178.229.8:80/saveForm', true)
             const str = JSON.stringify(data)
             xhr.setRequestHeader('Content-type', 'application/json')
             xhr.send(str)
@@ -78,6 +46,14 @@
             // xhr.addEventListener('load', function () {
             //     console.log(this.response)
             // })
+        }
+        window.alert = function(message){
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display="none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            window.frames[0].window.alert(message);
+            iframe.parentNode.removeChild(iframe);
         }
     </script>
     <style lang="scss" scoped>
