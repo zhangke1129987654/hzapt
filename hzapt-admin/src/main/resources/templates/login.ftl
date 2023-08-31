@@ -1,5 +1,7 @@
 <html>
 <head>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="viewport" content="width=100vw,height=100vh,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
     <title>杭州奥佩特健康管理有限公司</title>
     <script type="text/javascript">
         function checkForm() {
